@@ -1,10 +1,10 @@
 <?php
 class Car
 {
-    public $make_model;
+    private $make_model;
     private $price;
-    public $miles;
-    public $photo;
+    private $miles;
+    private $photo;
 
     function worthBuying($max_price)
     {
@@ -36,6 +36,18 @@ class Car
     function getPrice()
     {
         return $this->price;
+    }
+
+    function getMiles() {
+        return $this->miles;
+    }
+
+    function getModel() {
+        return $this->make_model;
+    }
+
+    function getPhoto() {
+        return $this->photo;
     }
 }
 

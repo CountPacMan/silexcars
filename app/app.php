@@ -84,17 +84,23 @@
             $car_price = $car->getPrice();
             $toReturn .= "<div class='row'>
                 <div class='col-md-6'>
-                    <p>$car->make_model</p>
+                    <p>";
+            $toReturn .= $car->getModel();
+            $toReturn .= "</p>
                     </div>
             </div>
             <div class='row'>
                 <div class='col-md-6'>
-                    <img src='$car->photo'>
+                    <img src='";
+            $toReturn .= $car->getPhoto();
+            $toReturn .= "'>
                     </div>
                     </div>
-                <p>$$car_price</p>
-                <p>$car->miles miles</p>
-            ";
+                <p>$";
+            $toReturn .= $car->getPrice();
+            $toReturn .= "</p><p>";
+            $toReturn .= $car->getMiles();
+            $toReturn .= " miles</p>";
         }
         if (empty($cars_matching_search)) {
             $toReturn .= "No vehicles match your search.";

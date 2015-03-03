@@ -66,7 +66,7 @@
         <body>
             <div class='container'>
                 <h1>Your Dealership</h1>
-                <form action='return'>
+                <form action='results'>
                     <div class='form-group'>
                         <label for='price'>Enter Maximum Price:</label>
                         <input id='price' name='price' class='form-control' type='number'>
@@ -82,7 +82,7 @@
 
         foreach ($cars_matching_search as $car) {
             $car_price = $car->getPrice();
-            $toReturn . "<div class='row'>
+            $toReturn .= "<div class='row'>
                 <div class='col-md-6'>
                     <p>$car->make_model</p>
                     </div>
@@ -97,10 +97,10 @@
             ";
         }
         if (empty($cars_matching_search)) {
-            $toReturn . "No vehicles match your search.";
+            $toReturn .= "No vehicles match your search.";
         }
 
-        $toReturn . "    </div>
+        $toReturn .= "    </div>
         </body>
         </html>
         ";

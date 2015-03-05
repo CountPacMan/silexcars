@@ -49,6 +49,7 @@ class Car
     function getPhoto() {
         return $this->photo;
     }
+
 }
 
 $ferrari = new Car('2012 Ferrari 480', 'images/ferrari.jpeg', 840000, 40000);

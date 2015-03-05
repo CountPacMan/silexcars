@@ -33,7 +33,18 @@
     });
 
     $app->get("/carInput", function() use ($app) {
-        return $app['twig']->render('carInput.twig', array('cars' => Car::getCars()));
+        return $app['twig']->render('carInput.twig');
+    });
+    //saving new car along with the saved cars
+    $app->post("/carInputed", function() use ($app) {
+        $carMake = $_POST['make'];
+        $carImage = $_POST['image'];
+        $carPrice = $_POST['price'];
+        $carMiles = $_POST['miles'];
+        $newCar = new Car($carMake, $carImage, $carPrice, $carMiles);
+        $newCar->save();
+
+        return $app['twig']->render('carInputed.twig', array('car' => $newCar));
     });
 
     return $app;

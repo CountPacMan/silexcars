@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <title>Posted a Car</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Here is the car you posted:</h1>
+        <p>Model: {{ car.getModel }}</p>
+        <p><img src="{{ car.getPhoto }}"></p>
+        <p>Price: {{ car.getPrice }}</p>
+        <p>Miles: {{ car.getMiles }}</p>
+
+        <form action="/carInput">
+            <button type="submit" class="btn-success">Post a new car</button>
+        </form>
+        <form action="/">
+            <button type="submit" class="btn-default">Return to Car Search</button>
+        </form>
+    </div>
+</body>
+</html>

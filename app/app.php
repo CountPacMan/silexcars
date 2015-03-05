@@ -1,5 +1,12 @@
 <?php
     require_once __DIR__."/../vendor/autoload.php";
+    require_once __DIR__."/../src/car.php";
+
+    session_start();
+    if (empty($_SESSION['cars'])) {
+        $_SESSION['cars'] = [];
+        require_once __DIR__."/../src/car_library.php";
+    }
 
     $app = new Silex\Application();
     // Registerung twig in Silex
@@ -15,9 +22,18 @@
     $app->get("/results", function() use ($app) {
         $carPrice = $_GET['price'];
         $carMiles = $_GET['miles'];
-        require_once __DIR__."/../src/car.php";
+        $cars_matching_search = [];
+        foreach ($_SESSION['cars'] as $car) {
+            if ($car->worthBuying($carPrice) && $car->worthMileage($carMiles)) {
+                array_push($cars_matching_search, $car);
+            }
+        }
         // the array from cars_matching search is passed as an associative array called 'cars'
         return $app['twig']->render('result.twig', array('cars' => $cars_matching_search));
+    });
+
+    $app->get("/carInput", function() use ($app) {
+        return $app['twig']->render('carInput.twig', array('cars' => Car::getCars()));
     });
 
     return $app;
